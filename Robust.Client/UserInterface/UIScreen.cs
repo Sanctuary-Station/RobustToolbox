@@ -142,6 +142,8 @@ public abstract class UIScreen : LayoutContainer
     {
         foreach (var child in control.Children)
         {
+            RegisterChildren(child);
+
             if (child is not UIWidget widget)
             {
                 continue;
@@ -166,6 +168,8 @@ public abstract class UIScreen : LayoutContainer
     {
         foreach (var child in control.Children)
         {
+            RemoveChildren(child);
+
             if (child is not UIWidget widget)
             {
                 continue;
