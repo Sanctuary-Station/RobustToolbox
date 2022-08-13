@@ -131,11 +131,11 @@ public abstract class UIScreen : LayoutContainer
     {
         base.ChildAdded(newChild);
 
+        RegisterChildren(newChild);
+
         if (newChild is not UIWidget widget) return;
         if (!_widgets.TryAdd(widget.GetType(), widget))
             throw new Exception("Tried to add duplicate widget to screen!");
-
-        RegisterChildren(newChild);
     }
 
     private void RegisterChildren(Control control)
@@ -159,9 +159,9 @@ public abstract class UIScreen : LayoutContainer
     protected override void ChildRemoved(Control child)
     {
         base.ChildRemoved(child);
+        RemoveChildren(child);
         if (child is not UIWidget widget) return;
         _widgets.Remove(child.GetType());
-        RemoveChildren(child);
     }
 
     private void RemoveChildren(Control control)
